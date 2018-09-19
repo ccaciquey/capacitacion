@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-2">Search: <input ng-model="$ctrl.query" class="form-control" /></div>
+    <div class="col-xs-10">
+      <!--Body content-->
+      <table width="100%" border="1">
+        <thead>
+          <th width="25%">Nombre</th>
+          <th width="25%">Descripci&oacute;n</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="phone in $ctrl.phones | filter:$ctrl.query">
+            <td>{{phone.name}}</td>
+            <td>{{phone.snippet}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

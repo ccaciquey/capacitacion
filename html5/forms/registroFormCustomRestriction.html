@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <title>Pruebas de Concepto Jquery Validate - Datatables</title>
+    
+    <link rel="stylesheet" type="text/css" href="/a/js/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/css/dataTables.bootstrap.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+        <div class="panel panel-primary">
+            <form id="formRegistro" name="formRegistro" class="form-horizontal" role="form">
+            <div class="panel-heading">
+                <h4 class="panel-title">Jquery - Validate Con Datatables</h4>
+            </div>
+            <div class="panel-body">
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="dni" class="control-label">N&uacute;mero de DNI:</label>   
+                        <input type="text" class="form-control" id="dni" name="dni" maxlength="8">                         
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="nombres" class="control-label">Apellidos y Nombres:</label>   
+                        <input type="text" class="form-control" id="nombres" name="nombres" maxlength="100">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="edad" class="control-label">Edad:</label>   
+                        <input type="text" class="form-control" id="edad" name="edad" maxlength="100">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="carrera" class="control-label ">Carrera:</label>                         
+                        <select class="form-control" id="carrera" name="carrera">
+                            <option value="">[-Seleccione-]</option>
+                            <option value="01">INGENIERIA INFORMATICA</option>
+                            <option value="02">INGENIERIA ELECTRONICA</option>
+                            <option value="03">INGENIERIA BIOQUIMICA</option>
+                            <option value="04">INGENIERIA DE SISTEMAS</option>
+                            <option value="05">MEDICINA</option>
+                            <option value="06">MECATRONICA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="talla" class="control-label">Talla(cm):</label>   
+                        <input type="text" class="form-control" id="talla" name="talla" maxlength="100">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="peso" class="control-label ">Peso(Kg):</label>                         
+                        <input type="text" class="form-control" id="peso" name="peso" maxlength="1000">
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <button class="btn btn-sm btn-primary" id="btnRegistrar"><i class="fa fa-save align-middle"></i>Grabar</button>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <button class="btn btn-sm btn-danger" type="reset" id="btnLimpiar"><i class="fa fa-close align-middle"></i>Limpiar</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+
+            
+        <div class="row">
+            <div class="col-xs-12 overflowXScroll">
+                <table id="resultadoBusquedaTable" class="table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>N&uacute;mero de DNI</th>
+                            <th>Apellidos y Nombres</th>
+                            <th>Edad</th>
+                            <th>Carrera</th>
+                            <th>Talla</th>
+                            <th>Peso</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" language="javascript" src="/a/js/libs/jquery/1.12.4/jquery-1.12.4.min.js"></script>
+<script src="/a/js/libs/jquery.validate/1.15.1/jquery.validate.js"></script>
+<script src="/a/js/libs/jquery.validate/1.15.1/additional-methods.min.js"></script>
+<script type="text/javascript" language="javascript" src="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript" language="javascript" class="init">
+    var contextPathUrl = "${pageContext.request.contextPath}";  
+    
+    
+    $(document).ready(function () {
+        
+        //================================================================================================================
+        //Configuracion de jquery validate
+        var datatablePersonas = $('#resultadoBusquedaTable').DataTable( {
+            "pageLength": 5,
+            "lengthMenu": [ 5, 10, 15, 20, 25 ],
+            "lengthChange": false,
+            "paging":   true,
+            "ordering": true,
+            "searching":true,
+            "info":true,
+            "language": {
+                "url": "/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/plug-ins/1.10.7/i18n/Spanish.json"
+            }
+        });
+
+        //================================================================================================================
+        //Creacion de metodos de restriccion personalizados
+        $.validator.addMethod("validarTalla", function(value, element) {
+            //Validamos la talla que sea mayor a 10cm y menor a 300cm (3 metros)
+            //Si el metodo retorna false entonces hay error en el campo
+            if(value<10 || value>300){
+                return false
+            }else{
+                return true;
+            }
+
+        }, "Ingrese una talla valida entre [10-300].");
+
+        $.validator.addMethod("validarPeso", function(value, element) {
+            if(value<10 || value>500){
+                return false
+            }else{
+                return true;
+            }            
+        }, "Ingrese un peso valido entre [10-500].");
+
+
+        //================================================================================================================
+        //Configuracion de jquery validate
+        //validación del formulario con jquery
+        $( "#formRegistro" ).validate({
+        errorElement: 'span',
+        errorClass: 'help-block',
+        ignore: ":hidden:not(select)",
+        rules: {
+            dni: {
+                required: true,
+                number: true
+            },
+            nombres: {
+                required: true
+            },
+            edad: {
+                required: true,
+                min: 15,
+                max: 50
+            },
+            carrera: {
+                required: true
+            },
+            talla: {
+                required: true,
+                digits:true,
+                validarTalla:true
+            },
+            peso: {
+                required: true,
+                number:true,
+                validarPeso:true
+            }
+       },
+       messages: {
+            dni: {
+                required: 'Ingrese su DNI.'
+            },
+            nombres: {
+                required: 'Seleccione conocimiento.'
+            },
+            edad: {
+                required: 'Ingrese su edad.',
+                min: 'Edad minima es 15 años.',
+                max: 'Edad maxima es 50 años.'
+            },
+            carrera: {
+                required: 'Seleccione su carrera.'
+            }
+        },
+        highlight: function (e) {
+            $(e).parent().addClass('has-error');
+            
+        },
+        success: function (e) {
+            //$(e).parent().removeClass('has-error').addClass('has-success');
+            $(e).parent().removeClass('has-error');
+            $(e).closest('.input-group').removeClass('has-error');
+            $(e).remove();
+        },
+        errorPlacement: function (error, element) {
+            error.insertAfter(element); 
+        },
+
+        submitHandler: function (form) {
+            //Todo correcto copiamos al jquery validate
+            var dni = $("#dni").val();
+            var nombres = $("#dni").val();
+            var edad = $("#edad").val();
+            var carrera = $("#carrera option:selected").text();
+            var talla = $("#talla").val();
+            var peso = $("#peso").val();
+
+            var linkBorrar = "<a href='javascript:borrar();'>Borrar</a>";
+            var linkActualizar = "<a href='javascript:actualizar();'>Actualizar</a>";
+
+            datatablePersonas.row.add( [ dni,nombres,edad,carrera,talla,peso,linkBorrar,linkActualizar]).draw( true );    
+        },
+        invalidHandler: function (form) {
+            //QUe hacemos cuando hay errores en el formulario
+        }
+    });
+
+});
+
+
+var borrar = function(){
+    alert("por hacer...");
+};
+
+var actualizar = function(){
+    alert("por hacer...");
+};
+
+</script>
+
+</html>

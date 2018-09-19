@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6">Ingresa Pa&iacute;s: <input ng-model="$ctrl.query.n" class="form-control" /></div>
+    <div class="col-xs-6"><input type="button" value="Cantidad de Items" ng-click="$ctrl.items();"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">Mostrando {{filtrados.length}} registros</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <!--Body content-->
+      <table width="100%" border="1">
+        <thead>
+          <th width="25%">Pa&iacute;s</th>
+          <th width="75%">Nombre</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="pais in $ctrl.paises | filter:$ctrl.query as filtrados">
+            <td>{{pais.c}}</td>
+            <td>{{pais.n}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

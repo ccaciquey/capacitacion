@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <title>Testing Datatables 2</title>
+
+    <link rel="stylesheet" type="text/css" href="/a/js/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/css/dataTables.bootstrap.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12"><h3>Testing datatables 2</h3></div>
+        </div>
+        <div class="col-xs-12 overflowXScroll">
+            <table id="resultadoBusquedaTable" class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Codigo Departamento</th>
+                        <th>Nombre Departamento</th>
+                        <th>Boton</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" language="javascript" src="/a/js/libs/jquery/1.12.4/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" language="javascript" src="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript" language="javascript" class="init">
+    var contextPathUrl = "${pageContext.request.contextPath}";
+
+
+    $(document).ready(function () {
+
+        //Configuracion del datatable
+        var tabla = $('#resultadoBusquedaTable').DataTable( {
+        	"dom": '<"top"i>rt<"bottom"flp><"clear">',
+            "paging":   true,
+            "ordering": true,
+            "searching":true,
+            "info":true,
+            "language": {
+                "url": "/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/plug-ins/1.10.7/i18n/Spanish.json"
+            }
+        });
+
+        $('#resultadoBusquedaTable tbody').on( 'click', 'button', function () {
+            var data = tabla.row( $(this).parents('tr') ).data();
+            alert("item seleccionado: "+ data[0] );
+        });
+
+        //http://api.sunat.peru/v1/recurso/administracion/patrimonio/e/departamentos
+
+        $.getJSON( "http://api.sunat.peru/v1/recurso/administracion/patrimonio/e/departamentos", function( data ) {
+            var tabla2 = $('#resultadoBusquedaTable').DataTable();
+            $.each( data, function( index, element ) {
+                tabla2.row.add( [ index,element.codDpto,element.nomDpto,'<button>Pulsa aqu&iacute;</button>']).draw( true );
+            });
+        });
+
+    });
+</script>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <title>Manipulación de Formulario</title>
+    <link href="/a/js/libs/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/a/js/libs/bootstrap/3.3.2/plugins/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+    <br>
+
+	<form id="formEjemplo01" name="formEjemplo01" class="form-horizontal" role="form">
+		<div class="row">
+			<div class="col-xs-12 text-center"><h1>Dominios de Despliegue de Integraci&oacute;n Desarrollo</h1></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-left"><h2>Modelo 1<SMALL>(Weblogic 10.3.4, JDK1.6)</SMALL></h2></div>
+		</div>
+    	<div class="row">
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.20:9002/console/login/LoginForm.jsp','Pegasus');">Pegasus</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.20:9003/console/login/LoginForm.jsp','Centaurus');">Centaurus</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.20:9004/console/login/LoginForm.jsp','Camelopardus');">Camelopardus</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.20:9905/console/login/LoginForm.jsp','Endor');">Endor</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-left"><h2>Modelo 2<SMALL>(Weblogic 10.3.6, JDK1.6)</SMALL></h2></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.50:40092/console','Servicios Administrativos M2');">Servicios Administrativos M2</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.50:40102/console','Servicios Riesgo M2');">Servicios Riesgo M2</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.50:40072/console','Negocio IQBF M2');">Negocio IQBF M2</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.50:40042/console','Negocio Tributario M2');">Negocio Tributario M2</button>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.61:40082/console','Negocio Aduanero M2');">Negocio Aduanero M2</button>
+			</div>
+			<div class="col-xs-9">&nbsp;</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 text-left"><h2>Modelo 3<SMALL>(Weblogic 12.1.3, JDK1.7)</SMALL></h2></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.55:40132/console','Servicios Administrativos M3');">Servicios Administrativos M3</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.55:40062/console','Servicios Tecnolog&iacute;a M3');">Servicios Tecnolog&iacute;a M3</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.55:40142/console','Negocio IQBF M3');">Negocio IQBF M3</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.55:40032/console','Negocio Tributario M3');">Negocio Tributario M3</button>
+			</div>
+			
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.84:40112/console','Negocio Aduanero M3');">Negocio Aduanero M3</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.55:40122/console','Servicios Riesgo M3');">Servicios Riesgo M3</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.55:40152/console','Negocio Tributario 2 M3');">Negocio Tributario 2 M3</button>
+			</div>
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.14:40002/console','Servicios Content M3');">Servicios Content M3</button>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-xs-3">
+				<button class="btn btn-primary btn-block" onclick="abreVentana('https://192.168.56.95:40162/console','Negocio Aduanero 2 M3');">Negocio Aduanero 2 M3</button>
+			</div>
+			<div class="col-xs-9"></div>
+		</div>
+
+
+	</form>
+	</div>
+<script src="/a/js/libs/jquery/3.2.1/jquery-3.2.1.js"></script>
+
+
+<script type="text/javascript" language="javascript" class="init">
+
+    $(document).ready(function () {
+
+    });
+
+    var abreVentana = function(pagina,nombre){
+	  var w=1050, h=650;
+	  var x=0,y=0;
+	  if (window.screen && window.screen.availHeight) {
+	    x = (screen.availHeight - h) / 2; 
+	    y = (screen.availWidth - w) / 2;
+	  }    
+	  winwin = window.open(pagina, nombre, "status=no,resizable=no,toolbar=no,scrollbars=yes,maximize=yes,top="+x+",left="+y+",width="+w+",height="+ h);
+	  winwin.focus();
+};
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <title>Consulta Masiva</title>
+    <link href="/a/js/libs/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/a/js/libs/bootstrap/3.3.2/plugins/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-4.14.30/css/bootstrap-datetimepicker.min.css">
+    <style type="text/css">
+    	.vbottom {
+    		display: inline-block;
+    		vertical-align: bottom;
+    		float: none;
+		}
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+    <br>
+    <div class="row">
+
+        <div class="col-xs-12">
+                <h2>Registro Integral de Formalizaci&oacute;n Minera con cambios</h2>
+                <br>
+                <h3 class="text-muted">Consulta Masiva de Datos</h3>
+                <hr>
+            </div>
+        </div>
+        <div style="padding-bottom:0" class="row">
+            <div class="col-xs-12">
+                <p class="text-muted">Para realizar la b&uacute;squeda tienes que ingresar primero la fecha inicial y a continuaci&oacute;n la fecha final, en los campos correspondientes continuaci&oacute;n:</p>
+                <br>
+            </div>
+        </div>
+    <div class="row">
+    	<form id="formPostDescargaExcel" name="formPostDescargaExcel" method="POST" action="${pageContext.request.contextPath}/RegistroMineria.htm">
+        <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+            <div class="form-group">
+            	<label for="fechaInicial">Fecha Inicial:</label>
+                <span style="display:block;"><small>(ejemplo: 01/01/2017)</small></span>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+            <div class="form-group">
+            	<label for="fechaFinal">Fecha Final:</label>
+                <span style="display:block;"><small>(ejemplo: 01/01/2017)</small></span>
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+        	<div class="form-group vbottom">
+        		<button class="btn btn-primary" type="button" onclick="javascript:validar();">Generar</button>
+        	</div>
+        </div>
+        </form>
+    </div>
+	</div>
+<script src="/a/js/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-4.14.30/js/moment-with-locales.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/a/js/libs/bootbox/4.4.0/bootbox.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-4.14.30/js/bootstrap-datetimepicker.min.js"></script>
+
+
+<script type="text/javascript" language="javascript" class="init">
+
+	var contextPathUrl = "${pageContext.request.contextPath}";  
+	
+	
+
+    $(document).ready(function () {
+      	$('#datetimepicker1').datetimepicker({
+                    locale: 'es',
+                    format: 'DD/MM/YYYY',
+                    icons: {
+                    	date: "fa fa-calendar",
+                    	up: "fa fa-arrow-up",
+                    	down: "fa fa-arrow-down"
+                	},
+                	useCurrent:true,
+                	maxDate:new Date()
+                });
+      	$('#datetimepicker2').datetimepicker({
+                    locale: 'es',
+                    format: 'DD/MM/YYYY',
+                    icons: {
+                    	date: "fa fa-calendar",
+                    	up: "fa fa-arrow-up",
+                    	down: "fa fa-arrow-down"
+                	},
+                	useCurrent:true,
+                	maxDate:new Date()
+                });
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+

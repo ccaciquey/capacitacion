@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <title>Testing Datatables 3</title>
+    <link href="/a/js/libs/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/a/js/libs/bootstrap/3.3.2/plugins/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/media/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <link href="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/extensions/Scroller/css/dataTables.scroller.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/a/js/libs/jquery-ui/1.11.4/css/jquery-ui.min.css">
+    <!--[if lt IE 9]>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12"><h3>Testing datatables 3</h3></div>
+        </div>
+        <div class="col-xs-12 overflowXScroll">
+            <table id="resultadoBusquedaTable" class="table table-striped table-hover" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Fecha de Registro</th>
+                        <th>Hora de Registro</th>
+                        <th>N&uacute;mero de RUC</th>
+                        <th>Apellidos y Nombres</th>
+                        <th>C&oacute;digo &Uacute;nico DM</th>
+                        <th>Nombre del DM</th>
+                        <th>Opci&oacute;n</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="/a/js/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/a/js/libs/bootbox/4.4.0/bootbox.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script src="/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript" language="javascript" class="init">
+    var contextPathUrl = "${pageContext.request.contextPath}";
+
+
+    $(document).ready(function () {
+
+        //Configuracion del datatable
+        $('#resultadoBusquedaTable').DataTable( {buttons: [
+        'selectAll',
+        'selectNone'
+    ],deferRender: true, dom: "frtiS", scrollY: 200, scrollCollapse: true});
+
+        var t = $('#resultadoBusquedaTable').DataTable();
+        for(var i=0;i<100;i++){
+            t.row.add( [ '20/02/2017','15:45','10415432271','Carlos Cacique','100','Derecho','Ver']).draw( true );
+        }
+
+    });
+</script>
+
+</html>

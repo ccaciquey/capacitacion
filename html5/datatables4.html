@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <title>Testing Datatables 4</title>
+    
+    <link rel="stylesheet" type="text/css" href="/a/js/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/css/dataTables.bootstrap.min.css">
+
+    <!--[if lt IE 9]>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="a/js/libs/bootstrap/3.3.2/plugins/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12"><h3>Testing datatables 4</h3></div>
+        </div>
+        <div class="col-xs-12 overflowXScroll">
+            <table id="resultadoBusquedaTable" class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Fecha de Registro</th>
+                        <th>Hora de Registro</th>
+                        <th>N&uacute;mero de RUC</th>
+                        <th>Apellidos y Nombres</th>
+                        <th>C&oacute;digo &Uacute;nico DM</th>
+                        <th>Nombre del DM</th>
+                        <th>Opci&oacute;n</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" language="javascript" src="/a/js/libs/jquery/1.12.4/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" language="javascript" src="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="/a/js/libs/bootstrap/3.3.7/plugins/dataTables-1.10.13/media/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript" language="javascript" class="init">
+    var contextPathUrl = "${pageContext.request.contextPath}";  
+    
+    
+    $(document).ready(function () {
+        
+        //Configuracion del datatable
+        $('#resultadoBusquedaTable').DataTable( {
+            "pageLength": 5,
+            "lengthMenu": [ 5, 10, 15, 20, 25 ],
+            "lengthChange": false,
+            "paging":   true,
+            "ordering": true,
+            "searching":true,
+            "info":true,
+            "language": {
+                "url": "/a/js/libs/bootstrap/3.3.2/plugins/datatables-1.10.7/plug-ins/1.10.7/i18n/Spanish.json"
+            }
+        });
+
+        var t = $('#resultadoBusquedaTable').DataTable();
+        for(var i=0;i<100;i++){
+            t.row.add( [ '20/02/2017','15:45','10415432271','Carlos Cacique','100','Derecho','Ver']).draw( true );    
+        }
+
+        //para resaltar cuando se pasa el mouse por la tabla.
+        $('td', t.cells().nodes()).hover( function() {
+            var iCol = $('td').index(this) % 5;
+            var nTrs = t.cells().nodes();
+            $('td:nth-child('+(iCol+1)+')', nTrs).addClass( 'highlighted' );
+        }, function() {
+            $('td.highlighted', t.cells().nodes()).removeClass('highlighted');
+        });
+
+
+    });
+</script>
+
+</html>
